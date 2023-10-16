@@ -3,6 +3,7 @@ import CardList from "./CardList";
 // import { robots } from './robots';
 import Searchbox from "./Searchbox";
 import './App.css'
+import Scroll from "./Scroll";
 
 class App extends Component {
     constructor() {
@@ -15,8 +16,8 @@ class App extends Component {
 
     componentDidMount() {
         fetch("https://jsonplaceholder.typicode.com/users")
-        .then(response => response.json())
-        .then(users => this.setState({ robots: users }))
+            .then(response => response.json())
+            .then(users => this.setState({ robots: users }))
     }
 
     componentDidUpdate() {
@@ -40,7 +41,9 @@ class App extends Component {
                 <div className="tc">
                     <h1 className="f2">Robofriends</h1>
                     <Searchbox searchChange={this.onSearchChange} />
-                    <CardList robots={filteredRobots} />
+                    <Scroll >
+                        <CardList robots={filteredRobots} />
+                    </Scroll>
                 </div>
             )
         }
